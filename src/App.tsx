@@ -5,6 +5,7 @@ import { base } from 'viem/chains';
 import { GameCanvas } from './game/GameCanvas';
 import { CONTRACTS, isContractDeployed, BASE_BRICK_BREAKER_ABI } from './contracts';
 import { playClick } from './game/audio';
+import { BUILDER_CODE } from './Web3Provider';
 
 // ── Types ──
 type Screen = 'HOME' | 'PLAYING' | 'GAME_OVER' | 'VICTORY' | 'LEADERBOARD';
@@ -144,6 +145,7 @@ function App() {
         abi: BASE_BRICK_BREAKER_ABI,
         functionName: 'submitScore',
         args: [BigInt(finalScore), BigInt(finalLevel)],
+        dataSuffix: BUILDER_CODE,
       });
       setTxStatus('✅ Score submitted on Base!');
     } catch (err: any) {
@@ -164,6 +166,7 @@ function App() {
         address: CONTRACTS.GAME_CONTRACT,
         abi: BASE_BRICK_BREAKER_ABI,
         functionName: 'checkIn',
+        dataSuffix: BUILDER_CODE,
       });
       setTxStatus('✅ Daily check-in done!');
     } catch (err: any) {
@@ -184,6 +187,7 @@ function App() {
         address: CONTRACTS.GAME_CONTRACT,
         abi: BASE_BRICK_BREAKER_ABI,
         functionName: 'mintBadge',
+        dataSuffix: BUILDER_CODE,
       });
       setTxStatus('✅ Badge minted!');
     } catch (err: any) {
